@@ -1,0 +1,27 @@
+<html>
+<p></p>
+<input></input>
+<button>button</button>
+</html>
+<script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.1/jquery.js"></script>
+<script>
+  $(document).ready(function() {
+    console.log('aaa');
+    var ref = new Firebase("https://blazing-inferno-1348.firebaseio.com/");
+    $('button').on('click', function()  {
+      console.log('test');
+      ref.push($('input').val());
+    });
+
+    ref.on('value', function (snapshot) {
+      $('p').text('');
+      $.each(snapshot.val(), function() {
+        $('p').append(this);
+      });
+    });
+
+  });
+
+
+</script>
